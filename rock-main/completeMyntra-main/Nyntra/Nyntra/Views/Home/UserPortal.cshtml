@@ -1,0 +1,140 @@
+﻿@model IEnumerable<Nyntra.Models.Product>
+@{
+    ViewBag.Title = "UserPortal";
+    Layout = "~/Views/Home_LayoutPage1.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping of products */
+            justify-content: center; /* Centers the products horizontally */
+            padding: 20px; /* Adds some padding around the product list */
+            background-color: #f4f4f4; /* Background color for the container */
+        }
+
+        .product-container {
+            width: 250px; /* Fixed width for product cards */
+            min-height: 350px; /* Increased minimum height for product cards */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            text-align: center;
+            position: relative;
+            margin: 15px; /* Margin for spacing between products */
+            transition: transform 0.2s ease-in-out;
+            flex: 0 1 auto; /* Allows cards to grow and shrink */
+        }
+
+
+            .product-container:hover {
+                transform: scale(1.05);
+            }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .wishlist-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product-container:hover .wishlist-btn {
+            display: block;
+        }
+
+        .product-details {
+            padding: 10px;
+        }
+
+        h3 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .price-info {
+            margin-top: 10px;
+        }
+
+        .current-price {
+            font-weight: bold;
+            font-size: 18px;
+            color: #000;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            margin-left: 10px;
+            color: #999;
+        }
+
+        .discount {
+            color: #ff4081;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-list">
+        @foreach (var product in Model)
+        {
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="@Url.Content(product.ProductImage)" alt="@product.ProductName" onerror="this.onerror=null; this.src='https://via.placeholder.com/250';">
+                    <button class="wishlist-btn">❤️ Wishlist</button>
+                </div>
+                <div class="product-details">
+                    <h3>@product.Brand</h3>
+                    <p>@product.ProductDescription</p>
+                    <div class="price-info">
+                        <span class="current-price">Rs. @product.ProductPrice</span>
+                        <span class="original-price">Rs. 649</span> <!-- Replace with actual original price if available -->
+                        <span class="discount">65% OFF</span> <!-- Adjust according to your logic -->
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        // Adding functionality for the wishlist button
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                alert('Added to Wishlist!');
+            });
+        });
+    </script>
+</body>
+</html>

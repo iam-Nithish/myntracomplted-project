@@ -1,0 +1,150 @@
+﻿@model Nyntra.Models.Product
+@{
+    ViewBag.Title = "EditProducts";
+    Layout = "~/Views/Admin_LayoutPage1.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+
+<head>
+ 
+
+   
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-7 align-self-center">
+                    <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Update Product</h4>
+                    <div class="d-flex align-items-center">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0 p-0">
+                                <li class="breadcrumb-item"><a href="Index" class="text-muted">Menu</a></li>
+                                <li class="breadcrumb-item text-muted active" aria-current="page">Product List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-5 align-self-center">
+                    <div class="customize-input float-right">
+                        <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
+                            <option selected>Oct 3</option>
+                            <option value="1">July 19</option>
+                            <option value="2">Jun 19</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+
+
+
+
+
+
+
+
+
+
+                                @using (Html.BeginForm("EditProducts", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(model => model.ProductID) <!-- Hidden field to track ProductID -->
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ProductName)
+                                            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ProductPrice)
+                                            @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.ProductDescription)
+                                            @Html.TextBoxFor(model => model.ProductDescription, new { @class = "form-control" })
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Category)
+                                            @Html.TextBoxFor(model => model.Category, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Status)
+                                            @Html.TextBoxFor(model => model.Status, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Color)
+                                            @Html.TextBoxFor(model => model.Color, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Brand)
+                                            @Html.TextBoxFor(model => model.Brand, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.Label("Product Image")
+                                            <input type="file" name="ProductImage" />
+                                        </div>
+
+                                        <!-- Show the current image if it exists -->
+                                        @if (!string.IsNullOrEmpty(Model.ProductImage))
+                                        {
+                                            <div class="form-group">
+                                                <label>Current Image:</label>
+                                                <img src="@Url.Content(Model.ProductImage)" alt="Product Image" width="150" />
+                                            </div>
+                                        }
+
+                                        <div class="form-group">
+                                            <input type="submit" value="Update" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/Conetent/Admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/Conetent/Admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/Conetent/Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="~/Conetent/Admin/dist/js/app-style-switcher.js"></script>
+    <script src="~/Conetent/Admin/dist/js/feather.min.js"></script>
+    <script src="~/Conetent/Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Conetent/Admin/dist/js/sidebarmenu.js"></script>
+
+    <script src="~/Conetent/Admin/dist/js/custom.min.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ExportToCsv";
+    Layout = "~/Views/Admin_LayoutPage1.cshtml";
+}
+
+
+
+<h2>Addresses List</h2>
+
+<!-- Button to download the list as CSV -->
+<a href="@Url.Action("ExportToCsv", "Admin")" class="btn btn-primary">Download as CSV</a>
+
+<!-- Display the list in a table -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>AddressID</th>
+            <th>ProductName</th>
+            <th>FullName</th>
+            <th>Mobile</th>
+            <th>PinCode</th>
+            <th>Address1</th>
+            <th>Locality</th>
+            <th>CityOrDistrict</th>
+            <th>State</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AddressID</td>
+                <td>@item.ProductName</td>
+                <td>@item.FullName</td>
+                <td>@item.Mobile</td>
+                <td>@item.PinCode</td>
+                <td>@item.Address1</td>
+                <td>@item.Locality</td>
+                <td>@item.CityOrDistrict</td>
+                <td>@item.State</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

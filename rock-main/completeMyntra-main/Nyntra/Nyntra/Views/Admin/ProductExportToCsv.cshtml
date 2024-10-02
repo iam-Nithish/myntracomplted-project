@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ProductExportToCsv";
+    Layout = "~/Views/Admin_LayoutPage1.cshtml";
+}
+
+
+
+<h2>Products List</h2>
+
+<!-- Button to download the list as CSV -->
+<a href="@Url.Action("ExportToCsv", "Admin")" class="btn btn-primary">Download as CSV</a>
+
+<!-- Display the list in a table -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ProductID</th>
+            <th>ProductName</th>
+            <th>ProductPrice</th>
+            <th>ProductDescription</th>
+            <th>Category</th>
+            <th>Color</th>
+            <th>Brand</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductID</td>
+                <td>@item.ProductName</td>
+                <td>@item.ProductPrice?.ToString("C")</td> <!-- Format price as currency -->
+                <td>@item.ProductDescription</td>
+                <td>@item.Category</td>
+                <td>@item.Color</td>
+                <td>@item.Brand</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
